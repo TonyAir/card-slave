@@ -1,5 +1,6 @@
 package com.app.zzm.card_slave.activity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,8 +11,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.app.zzm.card_slave.R;
+import com.app.zzm.card_slave.helper.DatebaseHelper;
 
 public class MainActivity extends AppCompatActivity {
+
+
+    private static final String TABLE_NAME="user_item";
+    //数据库名称
+    private static final String DATABASE_NAME="cs.db";
+    //数据库版本号
+    private static final int DATABASE_VERSION=1;
+    //表名
+    private DatebaseHelper databaseHelper;
+
+    private SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        databaseHelper=new DatebaseHelper(MainActivity.this,DATABASE_NAME,null,DATABASE_VERSION);
+        db =  databaseHelper.getReadableDatabase();
+
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {

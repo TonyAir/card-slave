@@ -22,7 +22,7 @@ public class DatebaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         // TODO Auto-generated method stub
-        db.execSQL("create table user_item( name varchar(5) primary key,password varchar(30))");
+        db.execSQL("create table IF NOT EXISTS user_item ( id INTEGER primary key,name varchar(30) ,is_devide BOOLEAN,periodsNumber INTEGER,money NUMERIC(10,5),start_yyyy_mm INTEGER)");
     }
 
     @Override
